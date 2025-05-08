@@ -1,0 +1,7 @@
+build/Makefile
+cmake-build-debug/CMakeFiles
+cmake-build-debug/Testing
+cmake-build-debug/CMakeCache.txt
+cmake-build-debug/CPackConfig.cmake
+cmake-build-debug/CPackSourceConfig.cmake
+cmake-build-debug/DartConfiguration.tcl
