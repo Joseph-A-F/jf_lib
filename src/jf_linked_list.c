@@ -12,6 +12,7 @@ Linked_List *new_blank_jf_linked_list() {
         printf("error");
         exit(1);
     }
+    new_list->size = 0;
 
     return new_list;
 }
@@ -34,22 +35,23 @@ void push_jf_linked_list(Linked_List **list, void *data, DataType type) {
             tmp = tmp->next;
         }
         tmp->next = new_node;
+        new_node->prev = tmp;
     }
+    (*list)->size++;
+}
 
-
-    // linked_list *new_list = new_blank_jf_linked_list();
-    // new_list->data = data;
-    // new_list->next = NULL;
-    //
-    // if (*list == NULL || (*list)->data == NULL) {
-    //     *list = new_list;
-    // } else {
-    //     linked_list *tmp = *list;
-    //     while (tmp->next != NULL) {
-    //         tmp = tmp->next;
-    //     }
-    //     tmp->next = new_list;
-    // }
+void delete_jf_linked_list(Linked_List **list, void *data) {
+    Node *tmp = (*list)->head;
+    while (tmp != NULL) {
+        if (tmp->data == data) {
+            Node *deleted_node = tmp;
+            tmp->prev->next = tmp->next;
+            tmp->next->prev = tmp->prev;
+            free(deleted_node);
+            (*list)->size--;
+        }
+        tmp = tmp->next;
+    }
 }
 
 void foreach_node(Linked_List *list,

@@ -6,7 +6,11 @@ add_library(jf_lib src/jf_linked_list.h
         src/jf_string.h
         src/jf_string.c
         src/jf_file.h
-        src/jf_file.c)
+        src/jf_file.c
+        src/jf_hashtable.h
+        src/jf_hashtable.c
+        src/jf_obsidian.c
+        src/jf_obsidian.h)
 target_include_directories(jf_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 # include(CTest)
