@@ -12,7 +12,7 @@ typedef struct jf_linked_list
 
 jf_linked_list * new_jf_linked_list(void* data);
 jf_linked_list * new_blank_jf_linked_list();
-//test
+
 void push_jf_linked_list(void* data);
 void delete_jf_linked_list(void* data);
 
