@@ -1,4 +1,4 @@
-#include "jf_linked_list.h"
+#include "jf_ds/jf_linked_list.h"
 #include <stdio.h>
 #include <stdlib.h>
 
