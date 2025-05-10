@@ -6,30 +6,55 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-int hashcode(Linked_List *list, void *code) {
-    return (int) code % list->size;
+int hashcode(Hash_Map *dic, void *code) {
+    int code1 = ((char *) code)[0];
+    int size = dic->list->size;
+    int index = code1 % size;
+    return index;
 }
 
-void hashmap_init(Linked_List *dic) {
-    if (dic == NULL) {
-        dic = (Linked_List *) malloc(sizeof(Linked_List));
+Hash_Map *hashmap_init() {
+    Hash_Map *dic = malloc(sizeof(Hash_Map));
+    dic->list = gen_linked_list_size(4);
+    return dic;
+}
+
+void hashmap_rehash(Hash_Map **dic) {
+    int new_size = (*dic)->list->size + 1;
+    Linked_List *new_list = gen_linked_list_size(new_size);
+    for (int i = 0; i < (*dic)->list->size; i++) {
+        Node *currentNode = get_node((*dic)->list, i);
     }
-    dic->size = 0;
+    // char *new_code = (char *) malloc(new_size * sizeof(char));
+    (*dic)->list = new_list;
 }
 
-void hashmap_rehash(Linked_List **dic) {
-    int new_size = (*dic)->size + 1;
-    Linked_List *new_dic = gen_linked_list_size(new_size);
-    for (int i = 0; i < (*dic)->size; i++) {
-        Node *currentNode = get_node(dic, i);
-        set_index(new_dic, i, currentNode->data);
-    }
-}
-
-void hashmap_put(Linked_List *dic, void *key, void *value) {
-    int index = hashcode(dic, key);
-    Node *node = get_node(dic, index);
-    if (node != NULL) {
+void hashmap_put(Hash_Map *dic, void *key, void *value) {
+    // Linked_List *list = dic->list;
+    while (dic->list->size == 0) {
         hashmap_rehash(&dic);
     }
+    int index = hashcode(dic, key);
+    Node *node;
+    while (node == NULL) {
+        hashmap_rehash(&dic);
+        node = get_node(dic->list, index);
+    }
+    // node->data = value;
+}
+
+void *get_value(Hash_Map *dic, char *field_name) {
+    if (dic->list == NULL) {
+        return NULL;
+    }
+    if (dic->list->size == 0) {
+        return NULL;
+    }
+    int index = hashcode(dic, field_name);
+    Node *node;
+    node = get_node(dic, index);
+    if (node == NULL) {
+        return NULL;
+    }
+    return node->data;
 }

@@ -10,16 +10,24 @@ Linked_List *gen_linked_list_size(int size) {
     Linked_List *list = (Linked_List *) malloc(sizeof(Linked_List));
     list->size = size;
     list->head = NULL;
-    int count = 0;
-    Node *tmp = list->head;
-    while (count < size) {
-        tmp = malloc(sizeof(Node));
-        tmp = tmp->next;
-        count++;
+
+    Node *prev = NULL;
+    for (int i = 0; i < size; i++) {
+        Node *node = (Node *) malloc(sizeof(Node));
+        node->data = NULL;
+        node->next = NULL;
+        if (prev) {
+            prev->next = node;
+        } else {
+            list->head = node;
+        }
+        prev = node;
     }
+
+    return list;
 }
 
-Linked_List *new_blank_jf_linked_list() {
+Linked_List *new_blank_linked_list() {
     Linked_List *new_list = (Linked_List *)
             malloc(sizeof(Linked_List));
     if (!new_list) {
@@ -31,7 +39,7 @@ Linked_List *new_blank_jf_linked_list() {
     return new_list;
 }
 
-void push_jf_linked_list(Linked_List **list, void *data, DataType type) {
+void append_list(Linked_List **list, void *data) {
     Node *new_node = malloc(sizeof(Node));
     if (!new_node) {
         printf("error");
@@ -39,8 +47,6 @@ void push_jf_linked_list(Linked_List **list, void *data, DataType type) {
     }
     new_node->data = data;
     new_node->next = NULL;
-    new_node->type = type;
-    //
     if ((*list)->head == NULL) {
         (*list)->head = new_node;
     } else {
@@ -54,7 +60,7 @@ void push_jf_linked_list(Linked_List **list, void *data, DataType type) {
     (*list)->size++;
 }
 
-void delete_jf_linked_list(Linked_List **list, void *data) {
+void delete_list_node(Linked_List **list, void *data) {
     Node *tmp = (*list)->head;
     while (tmp != NULL) {
         if (tmp->data == data) {

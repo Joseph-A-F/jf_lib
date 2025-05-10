@@ -7,7 +7,6 @@ void print_statement(void);
 
 
 typedef struct Node {
-    DataType type;
     void *data;
     struct Node *prev;
     struct Node *next;
@@ -22,11 +21,13 @@ typedef struct jf_linkedlist {
 
 Linked_List *gen_linked_list_size(int size);
 
-Linked_List *new_blank_jf_linked_list();
+Linked_List *new_blank_linked_list();
 
-void push_jf_linked_list(Linked_List **list, void *data, DataType type);
+void append_list(Linked_List **list, void *data);
 
-void delete_jf_linked_list(Linked_List **list, void *data);
+void delete_list_node(Linked_List **list, void *data);
+
+void *pop_list(Linked_List **list);
 
 Node *get_node(Linked_List *list, int index);
 

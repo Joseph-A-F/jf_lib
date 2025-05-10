@@ -7,15 +7,23 @@
 
 #include "jf_linkedlist.h"
 
-int hashcode(Linked_List *list, void *code);
+typedef struct hashmap {
+    Linked_List keys;
+    Linked_List *list;
+} Hash_Map;
 
-void hashmap_init(Linked_List *dic);
+int hashcode(Hash_Map *dic, void *code);
 
-void hashmap_clear(Linked_List *dic);
+Hash_Map *hashmap_init();
 
-void hashmap_rehash(Linked_List **dic);
+void hashmap_clear(Hash_Map *dic);
 
-void hashmap_put(Linked_List *dic, void *key, void *value);
+void hashmap_rehash(Hash_Map **dic);
+
+void hashmap_put(Hash_Map *dic, void *key, void *value);
+
+void *get_value(Hash_Map *dic, char *field_name);
+
 
 void *hashmap_get(void *key);
 
