@@ -69,6 +69,7 @@ void delete_jf_linked_list(Linked_List **list, void *data) {
 }
 
 Node *get_node(Linked_List *list, int index) {
+    check_index(list, index);
     Node *tmp = list->head;
     int i = 0;
     while (tmp != NULL) {
@@ -107,7 +108,15 @@ void foreach_node(Linked_List *list,
     }
 }
 
-void write_data_to_node_index(Linked_List *list, int i, void *data) {
+void check_index(Linked_List *list, int i) {
+    if (i > list->size) {
+        printf("error: %d is larger then list size %i", i, list->size);
+        exit(1);
+    }
+}
+
+void set_index(Linked_List *list, int i, void *data) {
+    check_index(list, i);
     Node *tmp = get_node(list, i);
     if (!tmp) {
         printf("error");

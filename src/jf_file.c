@@ -6,8 +6,8 @@
 #include "dirent.h"
 #include "jf_string.h"
 
-FILE *open_file_in_filepath(char *path, char *fopen_argument,
-                            char *working_directory) {
+FILE *find_open_in_workingdir(char *path, char *fopen_argument,
+                              char *working_directory) {
     FILE *file;
     file = fopen(path, fopen_argument);
     if (file != NULL) {
@@ -37,8 +37,8 @@ FILE *open_file_in_filepath(char *path, char *fopen_argument,
                 // char *new_working_dir = strdup(working_directory);
                 // append_string(&new_working_dir, "/");
                 // append_string(&new_working_dir, directory_name);
-                file = open_file_in_filepath(path, fopen_argument,
-                                             new_working_dir);
+                file = find_open_in_workingdir(path, fopen_argument,
+                                               new_working_dir);
                 if (file != NULL) {
                     return file;
                 }

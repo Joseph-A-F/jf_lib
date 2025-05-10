@@ -22,7 +22,7 @@ void hashmap_rehash(Linked_List **dic) {
     Linked_List *new_dic = gen_linked_list_size(new_size);
     for (int i = 0; i < (*dic)->size; i++) {
         Node *currentNode = get_node(dic, i);
-        write_data_to_node_index(new_dic, i, currentNode->data);
+        set_index(new_dic, i, currentNode->data);
     }
 }
 

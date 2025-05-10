@@ -35,5 +35,7 @@ int get_index(Linked_List *list, void *data);
 void foreach_node(Linked_List *list,
                   void (*function)(void *));
 
-void write_data_to_node_index(Linked_List *list, int i, void *data);
+void check_index(Linked_List *list, int i);
+
+void set_index(Linked_List *list, int i, void *data);
 #endif
