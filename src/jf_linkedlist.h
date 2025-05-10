@@ -13,14 +13,14 @@ typedef struct Node {
     struct Node *next;
 } Node;
 
-typedef struct jf_linked_list {
+typedef struct jf_linkedlist {
     Node *head;
     int size;
 } Linked_List;
 
 #define CAST_VOID (void(*)(void *))
 
-Linked_List *new_jf_linked_list(void *data);
+Linked_List *gen_linked_list_size(int size);
 
 Linked_List *new_blank_jf_linked_list();
 
@@ -28,7 +28,12 @@ void push_jf_linked_list(Linked_List **list, void *data, DataType type);
 
 void delete_jf_linked_list(Linked_List **list, void *data);
 
+Node *get_node(Linked_List *list, int index);
+
+int get_index(Linked_List *list, void *data);
 
 void foreach_node(Linked_List *list,
                   void (*function)(void *));
+
+void write_data_to_node_index(Linked_List *list, int i, void *data);
 #endif

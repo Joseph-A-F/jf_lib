@@ -1,3 +1,4 @@
 # JF_lib
 
-A Pure-C library for the purpose of practicing implementing Data Structures and Algorithms, and to store helper functions for future use. 
+A Pure-C library for the purpose of providing helper functions for future C projects and to practice implementing Data
+Structures and Algorithms. 

@@ -3,8 +3,12 @@
 
 void append_string(char **destination, const char *addition);
 
-// generate_substring_from_token(character_name_path, "|", 0, 1);
+
+int get_token_size(char *str, char *token);
+
+
 char *generate_substring_from_token(const char *string, const char *token,
                                     int start, int end);
+
 
 #endif
